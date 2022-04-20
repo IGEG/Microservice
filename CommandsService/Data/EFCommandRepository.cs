@@ -41,7 +41,7 @@ namespace CommandsService.Data
             return context.Messages.Any(m => m.ExternalID == externalMesssageId);
         }
 
-        public IEnumerable<Message> GetAllMessages()
+        public IEnumerable<Message> GetAllMessage()
         {
             return context.Messages.ToList();
         }

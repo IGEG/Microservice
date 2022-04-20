@@ -6,7 +6,7 @@ using CommandsService.Dtos;
 using CommandsService.Models;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CommandsService.EventProcessing
+namespace CommandsService.EventProcess
 {
     public class EventProcess : IEventProcess
     {

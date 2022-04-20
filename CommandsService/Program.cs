@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(opt=>opt.UseInMemoryDatabase("InMemory"));
 builder.Services.AddScoped<ICommandRepository,EFCommandRepository>();
 builder.Services.AddControllers();
+builder.Services.AddHostedServices<SubscriberMessageRabbitMQ>();
+builder.Services.AddSingleton<IEventProcess,EventProcess>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen();
