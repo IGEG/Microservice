@@ -10,22 +10,22 @@ namespace CommandsService.Data
             
         }
 
-        public DbSet<Platform> Platforms { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<Command> Commands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<Platform>()
+                .Entity<Message>()
                 .HasMany(p => p.Commands)
-                .WithOne(p=> p.Platform!)
+                .WithOne(p=> p.Platform)
                 .HasForeignKey(p => p.PlatformId);
 
             modelBuilder
                 .Entity<Command>()
-                .HasOne(p => p.Platform)
+                .HasOne(p => p.Message)
                 .WithMany(p => p.Commands)
-                .HasForeignKey(p =>p.PlatformId);
+                .HasForeignKey(p =>p.MessageId);
         }
     }
 }

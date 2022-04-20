@@ -6,14 +6,14 @@ namespace CommandsService.Data
     public interface ICommandRepository
     {
       
-        IEnumerable<Platform> GetAllPlatforms();
-        void EditPlatform(Platform plat);
-        bool PlaformExits(int platformId);
-        bool ExternalPlatformExists(int externalPlatformId);
+        IEnumerable<Message> GetAllMessage();
+        void EditMessage(Message message);
+        bool MessageExits(int messageId);
+        bool ExternalMessageExists(int externalMessageId);
 
 
-        IEnumerable<Command> GetCommandsForPlatform(int platformId);
-        Command GetCommand(int platformId, int commandId);
-        void EditCommand(int platformId, Command command);
+        IEnumerable<Command> GetCommandsForMessage(int messageId);
+        Command GetCommand(int messageId, int commandId);
+        void EditCommand(int messageId, Command command);
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CommandsService.Models
 {
-    public class Platform
+    public class Message
     {
         [Key]
         [Required]

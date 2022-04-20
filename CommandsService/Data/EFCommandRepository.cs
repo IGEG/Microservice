@@ -5,63 +5,63 @@ using CommandsService.Models;
 
 namespace CommandsService.Data
 {
-    public class CommandRepository : ICommandRepository
+    public class EFCommandRepository : ICommandRepository
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext context;
 
-        public CommandRepository(AppDbContext context)
+        public EFCommandRepository(AppDbContext _context)
         {
-            _context = context;
+            context = _context;
         }
 
-        public void EditCommand(int platformId, Command command)
+        public void EditCommand(int messageId, Command command)
         {
             if (command == null)
             {
                 throw new ArgumentNullException(nameof(command));
             }
 
-            command.PlatformId = platformId;
-            _context.Commands.Add(command);
-            _context.SaveChanges();
+            command.MessageId = messageId;
+            context.Commands.Add(command);
+            context.SaveChanges();
         }
 
-        public void EditPlatform(Platform plat)
+        public void EditMessage(Message message)
         {
-            if(plat == null)
+            if(message == null)
             {
-                throw new ArgumentNullException(nameof(plat));
+                throw new ArgumentNullException(nameof(message));
             }
-            _context.Platforms.Add(plat);
-            _context.SaveChanges();
+            context.Messages.Add(message);
+            context.SaveChanges();
         }
 
-        public bool ExternalPlatformExists(int externalPlatformId)
+        public bool ExternalMessageExists(int externalMessageId)
         {
-            return _context.Platforms.Any(p => p.ExternalID == externalPlatformId);
+            return context.Messages.Any(m => m.ExternalID == externalMesssageId);
         }
 
-        public IEnumerable<Platform> GetAllPlatforms()
+        public IEnumerable<Message> GetAllMessages()
         {
-            return _context.Platforms.ToList();
+            return context.Messages.ToList();
         }
 
-        public Command GetCommand(int platformId, int commandId)
+        public Command GetCommand(int messageId, int commandId)
         {
-            return _context.Commands
-                .Where(c => c.PlatformId == platformId && c.Id == commandId).FirstOrDefault();
+            return context.Commands
+                .Where(c => c.MessageId == messageId && c.Id == commandId).FirstOrDefault();
         }
 
-        public IEnumerable<Command> GetCommandsForPlatform(int platformId)
+        public IEnumerable<Command> GetCommandsForMessage(int messageId)
         {
-            return _context.Commands
-                .Where(c => c.PlatformId == platformId)
-                .OrderBy(c => c.Platform.Name);
+            return context.Commands
+                .Where(c => c.MessageId == messageId)
+                .OrderBy(c => c.Message.Name);
         }
 
-        public bool PlaformExits(int platformId)
+        public bool MessageExits(int messageId)
         {
-            return _context.Platforms.Any(p => p.Id == platformId);
+            return context.Messages.Any(m => m.Id == messageId);
         }
 
     }

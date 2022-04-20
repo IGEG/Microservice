@@ -15,9 +15,9 @@ namespace CommandsService.Models
         public string WhatName { get; set; }
 
         [Required]
-        public int PlatformId { get; set; }
+        public int MessageId { get; set; }
 
-        public Platform Platform {get; set;}
+        public Message Message {get; set;}
 
 
     }

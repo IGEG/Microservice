@@ -13,7 +13,7 @@ namespace CommandsService.Profiles
             CreateMap<Message, DtoReadMessage>();
             CreateMap<DtoCreateCommands, Command>();
             CreateMap<Command, DtoReadCommand>();
-            CreateMap<PlatformPublishedDto, Platform>()
+            CreateMap<DtoPublishMessage, Message>()
                 .ForMember(dest => dest.ExternalID, opt => opt.MapFrom(src => src.Id));
             CreateMap<GrpcPlatformModel, Platform>()
                 .ForMember(dest => dest.ExternalID, opt => opt.MapFrom(src => src.PlatformId))
